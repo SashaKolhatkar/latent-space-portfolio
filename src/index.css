@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow: hidden;
+  background: #090a0f;
+  color: #f8fafc;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: rgba(0, 240, 255, 0.28);
+  color: #fff;
+}
+
+@layer components {
+  .mono-label {
+    @apply font-mono text-[10px] uppercase tracking-[0.2em] text-slate-400;
+  }
+
+  .glass-panel {
+    @apply border border-white/[0.09] bg-[#0C0E15]/80 backdrop-blur-xl;
+  }
+
+  .hud-button {
+    @apply inline-flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-slate-300 transition-colors duration-200 hover:border-cyan/50 hover:text-cyan focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan;
+  }
+
+  .pill-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-mono text-[11px] uppercase tracking-[0.14em] transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan;
+  }
+
+  .thin-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.35) transparent;
+  }
+
+  .thin-scroll::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .thin-scroll::-webkit-scrollbar-thumb {
+    border-radius: 99px;
+    background: rgba(148, 163, 184, 0.3);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Canvas chrome                                                             */
+/* -------------------------------------------------------------------------- */
+
+.canvas-surface {
+  touch-action: none;
+  cursor: grab;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 45%, rgba(20, 26, 42, 0.55), transparent 75%),
+    #090a0f;
+}
+
+.canvas-surface[data-dragging='true'] {
+  cursor: grabbing;
+}
+
+.world-layer {
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.node-shell {
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translate3d(-500px, -500px, 0);
+}
+
+.node-shell[data-dimmed='true'] {
+  opacity: 0.24;
+  filter: saturate(0.35);
+}
+
+.node-shell,
+.node-shell * {
+  transition: opacity 260ms ease, filter 260ms ease;
+}
+
+.node-core {
+  animation: node-breathe 4.6s ease-in-out infinite;
+}
+
+.node-orbit {
+  transform-origin: 32px 32px;
+  animation: orbit-spin 26s linear infinite;
+}
+
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes node-breathe {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.07);
+  }
+}
+
+.node-label {
+  text-shadow: 0 1px 8px #090a0f, 0 1px 3px #090a0f;
+  white-space: nowrap;
+}
+
+.vignette {
+  background:
+    radial-gradient(ellipse 85% 75% at 50% 50%, transparent 45%, rgba(9, 10, 15, 0.72) 100%);
+}
+
+.scan-overlay {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 3px,
+    rgba(0, 240, 255, 0.018) 4px
+  );
+}
+
+.grid-line {
+  shape-rendering: crispEdges;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Candidate CV                                                              */
+/* -------------------------------------------------------------------------- */
+
+.cv-sheet a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media print {
+  body {
+    overflow: visible;
+    background: #fff;
+    color: #000;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .cv-sheet {
+    color: #000 !important;
+  }
+
+  .cv-sheet * {
+    color: #000 !important;
+    border-color: #bbb !important;
+    background: transparent !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
