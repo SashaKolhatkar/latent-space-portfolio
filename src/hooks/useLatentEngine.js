@@ -25,12 +25,13 @@ export function useLatentEngine({ mode, focusedId, paused, coordRef }) {
   const edgeEls = useRef(new Map())
   const positions = useRef(new Map())
   const targets = useRef(LAYOUTS[mode].positions)
-  const camera = useRef({ x: 0, y: 0, z: 0.82, tx: 0, ty: 0, tz: 1 })
+  const camera = useRef({ x: 0, y: 0, z: 1, tx: 0, ty: 0, tz: 1 })
   const savedCamera = useRef(null)
   const pointer = useRef({ sx: 0, sy: 0, wx: 0, wy: 0, inside: false })
   const drag = useRef({ active: false, id: null, x: 0, y: 0, camX: 0, camY: 0, start: 0, moved: false })
   const activePointers = useRef(new Map())
   const pinch = useRef(null)
+  const paintRef = useRef(null)
   const lastTap = useRef({ time: 0, x: 0, y: 0 })
   const modeRef = useRef(mode)
   const pausedRef = useRef(paused)
@@ -59,12 +60,13 @@ export function useLatentEngine({ mode, focusedId, paused, coordRef }) {
     if (!surface) return
     const { width, height } = surface.getBoundingClientRect()
     const cam = camera.current
-    const worldX = (sx - width / 2 - cam.tx) / cam.tz
-    const worldY = (sy - height / 2 - cam.ty) / cam.tz
-    const next = clamp(cam.tz * factor, ZOOM_MIN, ZOOM_MAX)
-    cam.tx = sx - width / 2 - worldX * next
-    cam.ty = sy - height / 2 - worldY * next
-    cam.tz = next
+    const worldX = (sx - width / 2 - cam.x) / cam.z
+    const worldY = (sy - height / 2 - cam.y) / cam.z
+    const next = clamp(cam.z * factor, ZOOM_MIN, ZOOM_MAX)
+    cam.x = cam.tx = sx - width / 2 - worldX * next
+    cam.y = cam.ty = sy - height / 2 - worldY * next
+    cam.z = cam.tz = next
+    paintRef.current?.()
   }, [])
 
   const zoomBy = useCallback(
@@ -78,9 +80,11 @@ export function useLatentEngine({ mode, focusedId, paused, coordRef }) {
   )
 
   const reset = useCallback(() => {
-    camera.current.tx = 0
-    camera.current.ty = 0
-    camera.current.tz = 1
+    const cam = camera.current
+    cam.x = cam.tx = 0
+    cam.y = cam.ty = 0
+    cam.z = cam.tz = 1
+    paintRef.current?.()
   }, [])
 
   /* ---------------------------------------------------------------------- */
@@ -167,6 +171,7 @@ export function useLatentEngine({ mode, focusedId, paused, coordRef }) {
 
     // Paint once synchronously so nodes never flash at the origin while the
     // first animation frame is pending (also helps reduced-frame environments).
+    paintRef.current = paint
     paint()
 
     let frameId
@@ -232,7 +237,10 @@ export function useLatentEngine({ mode, focusedId, paused, coordRef }) {
     }
 
     frameId = requestAnimationFrame(frame)
-    return () => cancelAnimationFrame(frameId)
+    return () => {
+      cancelAnimationFrame(frameId)
+      paintRef.current = null
+    }
   }, [coordRef, sizeOf])
 
   /* ---------------------------------------------------------------------- */

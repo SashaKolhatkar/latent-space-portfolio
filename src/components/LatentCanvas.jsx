@@ -76,7 +76,10 @@ function NodeGlyph({ node, size }) {
 
 function ZoomControls({ onZoomIn, onZoomOut, onReset }) {
   return (
-    <div className="no-print pointer-events-auto absolute right-4 top-1/2 z-20 flex -translate-y-1/2 flex-col gap-2 sm:right-6">
+    <div
+      className="no-print pointer-events-auto absolute right-4 top-1/2 z-20 flex -translate-y-1/2 flex-col gap-2 sm:right-6"
+      onPointerDown={(event) => event.stopPropagation()}
+    >
       <button type="button" className="hud-button" onClick={onZoomIn} title="Zoom in (+)" aria-label="Zoom in">
         <PlusIcon />
       </button>
