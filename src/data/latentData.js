@@ -18,7 +18,7 @@ export const SPACE_TONES = {
 }
 
 export const GITHUB_PROFILE = 'https://github.com/SashaKolhatkar'
-export const RESUME_URL = '/resume.pdf'
+export const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf`
 export const EMAIL = 'sashakolhatkar28@gmail.com'
 
 export const DOMAIN_META = {
