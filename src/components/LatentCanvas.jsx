@@ -7,8 +7,8 @@ import {
   LAYOUTS,
   NODES,
   NODE_BY_ID,
-  TONES,
 } from '../data/latentData'
+import { useTheme } from '../context/ThemeContext'
 import { useLatentEngine } from '../hooks/useLatentEngine'
 import { MinusIcon, PlusIcon, ResetIcon } from './icons'
 
@@ -31,7 +31,7 @@ function NodeGlyph({ node, size }) {
         </g>
         <circle className="node-core" cx="32" cy="32" r="18" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeOpacity="0.7" strokeWidth="1.4" />
         <circle cx="32" cy="32" r="6.5" fill="currentColor" />
-        <circle cx="32" cy="32" r="2.2" fill="#090A0F" />
+        <circle cx="32" cy="32" r="2.2" fill="rgb(var(--bg-rgb))" />
         <circle cx="54" cy="17" r="2.6" fill="currentColor" opacity="0.75" />
       </svg>
     )
@@ -91,6 +91,7 @@ function ZoomControls({ onZoomIn, onZoomOut, onReset }) {
 }
 
 export default function LatentCanvas({ mode, focusedId, coordRef, onOpenProject }) {
+  const { tones: TONES, spaceMode } = useTheme()
   const {
     surfaceRef,
     worldRef,
@@ -143,18 +144,18 @@ export default function LatentCanvas({ mode, focusedId, coordRef, onOpenProject 
         >
           <defs>
             <pattern id="ls-grid" width="64" height="64" patternUnits="userSpaceOnUse">
-              <path d="M 64 0 L 0 0 0 64" fill="none" stroke="#1A1D27" strokeWidth="1" className="grid-line" />
+              <path d="M 64 0 L 0 0 0 64" fill="none" stroke="rgb(var(--grid-rgb))" strokeWidth="1" className="grid-line" />
             </pattern>
             <pattern id="ls-grid-major" width="320" height="320" patternUnits="userSpaceOnUse">
-              <path d="M 320 0 L 0 0 0 320" fill="none" stroke="#00F0FF" strokeOpacity="0.07" strokeWidth="1" className="grid-line" />
+              <path d="M 320 0 L 0 0 0 320" fill="none" stroke="rgb(var(--cyan-rgb))" strokeOpacity="0.07" strokeWidth="1" className="grid-line" />
             </pattern>
           </defs>
 
           <g transform="translate(2000 2000)">
             <rect x="-2400" y="-2400" width="4800" height="4800" fill="url(#ls-grid)" opacity="0.75" />
             <rect x="-2400" y="-2400" width="4800" height="4800" fill="url(#ls-grid-major)" />
-            <line x1="-2400" y1="0" x2="2400" y2="0" stroke="#00F0FF" strokeOpacity="0.09" strokeWidth="1" />
-            <line x1="0" y1="-2400" x2="0" y2="2400" stroke="#00F0FF" strokeOpacity="0.09" strokeWidth="1" />
+            <line x1="-2400" y1="0" x2="2400" y2="0" stroke="rgb(var(--cyan-rgb))" strokeOpacity="0.09" strokeWidth="1" />
+            <line x1="0" y1="-2400" x2="0" y2="2400" stroke="rgb(var(--cyan-rgb))" strokeOpacity="0.09" strokeWidth="1" />
 
             {/* Cluster halos */}
             <AnimatePresence>
@@ -199,7 +200,7 @@ export default function LatentCanvas({ mode, focusedId, coordRef, onOpenProject 
               const active = hoveredId && (edge.source === hoveredId || edge.target === hoveredId)
               const dimmed = hoveredId && !active
               const sourceTone = DOMAIN_META[NODE_BY_ID[edge.source]?.domain]?.tone || 'slate'
-              const stroke = active ? TONES[sourceTone] : '#7C8AA3'
+              const stroke = active ? TONES[sourceTone] : spaceMode ? '#8B93C8' : '#7C8AA3'
               return (
                 <line
                   key={edge.id}

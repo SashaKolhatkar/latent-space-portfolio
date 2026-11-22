@@ -105,3 +105,13 @@ export function CheckIcon({ className = 'h-4 w-4', style }) {
     </svg>
   )
 }
+
+export function OrbitalIcon({ className = 'h-4 w-4' }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" {...base}>
+      <circle cx="12" cy="12" r="2.4" />
+      <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(-25 12 12)" />
+      <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(35 12 12)" />
+    </svg>
+  )
+}

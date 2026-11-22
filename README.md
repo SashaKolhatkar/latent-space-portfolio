@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Then open the URL Vite prints (default `http://localhost:5174`).
+Then open the URL Vite prints (default `http://localhost:5175`).
 
 ```bash
 npm run build
@@ -26,7 +26,13 @@ npm run preview
 | Inspect a project | Click its node | Tap its node |
 | Close a case study | `Esc` or return button | Return button |
 | Change clustering | Bottom dock | Bottom dock |
+| Switch visual mode | Space Mode toggle | SPACE toggle |
 | Recruiter view | Quick CV Mode toggle | CV toggle |
+
+## Visual modes
+
+- **Latent Space** (default) — obsidian `#090A0F` canvas with slate gridlines and cyan/violet/emerald accents.
+- **Deep Space** — opt-in separate mode with a starfield, drifting nebula wash, and a shifted cyan/purple/pink palette. The choice is saved in `localStorage`, and animations are disabled in Quick CV Mode.
 
 ## Architecture
 
@@ -36,17 +42,20 @@ npm run preview
 - `src/components/CaseStudy.jsx` — camera zoom target + glassmorphic case-study overlay.
 - `src/components/QuickCv.jsx` — animation-free, print-friendly recruiter summary.
 - `src/components/MobileCards.jsx` — default under 768px, with cluster filters and an opt-in interactive map.
+- `src/context/ThemeContext.jsx` — Latent Space / Deep Space mode state and palette, persisted in `localStorage`.
+- `src/components/CosmicBackdrop.jsx` — CSS/SVG starfield and nebula shown only in Deep Space mode.
 
 ## Content notes
 
-Verified public repositories pulled from `https://github.com/SashaKolhatkar`:
+Only publicly available repositories are shown as projects, pulled from `https://github.com/SashaKolhatkar`:
 
 - `sentimentiq` → https://github.com/SashaKolhatkar/sentimentiq
 - `memoza` → https://github.com/SashaKolhatkar/memoza
 - `smart-crop-recommendation` → https://github.com/SashaKolhatkar/smart-crop-recommendation
+- `song-reccomendation` → https://github.com/SashaKolhatkar/song-reccomendation
 
-`batterysense` and `quizforge` were not public on the profile at build time. Their buttons currently point to a GitHub repository search and are flagged with `repoUnverified: true` in `src/data/latentData.js` — replace them with exact URLs when those repositories are published.
+Unavailable projects and dead links were removed rather than shown as broken buttons.
 
-The Resume button points to `/resume.pdf`. Drop a PDF at `public/resume.pdf` to activate it.
+The Resume button in the header opens `public/resume.pdf`, which is bundled with the site.
 
 Deployment links used where a GitHub Pages site exists: Memoza and Smart Crop Recommendation.

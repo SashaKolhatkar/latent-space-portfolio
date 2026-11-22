@@ -2,14 +2,17 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import CaseStudy from './components/CaseStudy'
 import ClusterDock from './components/ClusterDock'
+import CosmicBackdrop from './components/CosmicBackdrop'
 import Hud from './components/Hud'
 import LatentCanvas from './components/LatentCanvas'
 import MobileCards from './components/MobileCards'
 import QuickCv from './components/QuickCv'
 import { ArrowLeftIcon } from './components/icons'
+import { useTheme } from './context/ThemeContext'
 import { useIsMobile } from './hooks/useIsMobile'
 
 export default function App() {
+  const { spaceMode } = useTheme()
   const [mode, setMode] = useState('domain')
   const [cvMode, setCvMode] = useState(false)
   const [mobileMap, setMobileMap] = useState(false)
@@ -34,6 +37,7 @@ export default function App() {
 
   return (
     <main className="relative h-[100dvh] w-full overflow-hidden bg-obsidian">
+      {spaceMode && <CosmicBackdrop animated={!cvMode} />}
       <Hud cvMode={cvMode} onToggleCv={toggleCv} coordRef={coordRef} />
 
       {cvMode ? (

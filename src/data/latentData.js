@@ -9,6 +9,14 @@ export const TONES = {
   slate: '#94A3B8',
 }
 
+/* Separate "Deep Space" palette — used only when the space mode is enabled. */
+export const SPACE_TONES = {
+  cyan: '#22D3EE',
+  violet: '#C084FC',
+  emerald: '#F472B6',
+  slate: '#A5B4FC',
+}
+
 export const GITHUB_PROFILE = 'https://github.com/SashaKolhatkar'
 export const RESUME_URL = '/resume.pdf'
 export const EMAIL = 'sashakolhatkar28@gmail.com'
@@ -31,23 +39,13 @@ export const DOMAIN_META = {
 export const NODES = [
   // Projects ---------------------------------------------------------------
   {
-    id: 'batterysense',
-    label: 'BatterySense AI',
-    kind: 'project',
-    domain: 'predictive',
-    tech: 'ml',
-    year: 2025,
-    meta: 'PROJECT 01 · 2025',
-    summary: 'EV battery SOH, RUL and anomaly detection behind one FastAPI service.',
-  },
-  {
     id: 'sentimentiq',
     label: 'SentimentIQ',
     kind: 'project',
     domain: 'nlp',
     tech: 'ml',
     year: 2025,
-    meta: 'PROJECT 02 · 2025',
+    meta: 'PROJECT 01 · 2025',
     summary: 'Sentiment, emotion, bot and topic intelligence for reviews and social data.',
   },
   {
@@ -57,7 +55,7 @@ export const NODES = [
     domain: 'fullstack',
     tech: 'frontend',
     year: 2025,
-    meta: 'PROJECT 03 · 2025',
+    meta: 'PROJECT 02 · 2025',
     summary: 'Adaptive task planning with dynamic scheduling and Google Calendar sync.',
   },
   {
@@ -67,40 +65,37 @@ export const NODES = [
     domain: 'predictive',
     tech: 'ml',
     year: 2024,
-    meta: 'PROJECT 04 · 2024',
+    meta: 'PROJECT 03 · 2024',
     summary: 'Soil NPK + climate data → crop recommendation at ~88% held-out accuracy.',
   },
   {
-    id: 'quizforge',
-    label: 'QuizForge',
+    id: 'song-reccomendation',
+    label: 'Song Recommendation',
     kind: 'project',
-    domain: 'nlp',
-    tech: 'frontend',
+    domain: 'predictive',
+    tech: 'ml',
     year: 2026,
-    meta: 'PROJECT 05 · 2026',
-    summary: 'Autonomous MCQ generation for educational assessment with Google Gemini.',
+    meta: 'PROJECT 04 · 2026',
+    summary: 'Face emotion → music mood → content-based Spotify playlist recommendations.',
   },
 
   // Core skills ------------------------------------------------------------
   { id: 'python', label: 'Python', kind: 'skill', domain: 'predictive', tech: 'ml', year: 2021, meta: 'CORE SKILL', summary: 'Primary language for modelling, data pipelines and services.' },
   { id: 'scikit-learn', label: 'Scikit-learn', kind: 'skill', domain: 'predictive', tech: 'ml', year: 2023, meta: 'CORE SKILL', summary: 'Classical ML modelling, pipelines and evaluation.' },
-  { id: 'xgboost', label: 'XGBoost', kind: 'skill', domain: 'predictive', tech: 'ml', year: 2025, meta: 'CORE SKILL', summary: 'Gradient-boosted trees for tabular regression.' },
   { id: 'random-forest', label: 'Random Forest', kind: 'skill', domain: 'predictive', tech: 'ml', year: 2024, meta: 'CORE SKILL', summary: 'Ensemble classifier used in crop and battery models.' },
-  { id: 'isolation-forest', label: 'Isolation Forest', kind: 'skill', domain: 'predictive', tech: 'ml', year: 2025, meta: 'CORE SKILL', summary: 'Unsupervised anomaly detection for degradation signals.' },
   { id: 'pandas', label: 'Pandas', kind: 'skill', domain: 'predictive', tech: 'ml', year: 2023, meta: 'CORE SKILL', summary: 'Feature engineering and tabular data wrangling.' },
   { id: 'numpy', label: 'NumPy', kind: 'skill', domain: 'predictive', tech: 'ml', year: 2023, meta: 'CORE SKILL', summary: 'Numerical arrays and vectorised transforms.' },
   { id: 'flask', label: 'Flask', kind: 'skill', domain: 'predictive', tech: 'ml', year: 2024, meta: 'CORE SKILL', summary: 'Lightweight inference API for the crop model.' },
   { id: 'nlp', label: 'NLP', kind: 'skill', domain: 'nlp', tech: 'ml', year: 2023, meta: 'CORE SKILL', summary: 'Text classification, topic modelling and linguistic features.' },
-  { id: 'gemini', label: 'Google Gemini', kind: 'skill', domain: 'nlp', tech: 'ml', year: 2026, meta: 'CORE SKILL', summary: 'LLM generation layer for autonomous assessment content.' },
   { id: 'fastapi', label: 'FastAPI', kind: 'skill', domain: 'fullstack', tech: 'backend', year: 2025, meta: 'CORE SKILL', summary: 'Typed, high-performance inference and application APIs.' },
   { id: 'react', label: 'React.js', kind: 'skill', domain: 'fullstack', tech: 'frontend', year: 2024, meta: 'CORE SKILL', summary: 'Interactive dashboards and product interfaces.' },
   { id: 'postgresql', label: 'PostgreSQL', kind: 'skill', domain: 'fullstack', tech: 'backend', year: 2025, meta: 'CORE SKILL', summary: 'Relational persistence for adaptive planning data.' },
   { id: 'sqlalchemy', label: 'SQLAlchemy', kind: 'skill', domain: 'fullstack', tech: 'backend', year: 2025, meta: 'CORE SKILL', summary: 'ORM and query layer for Python services.' },
-  { id: 'sqlite', label: 'SQLite', kind: 'skill', domain: 'fullstack', tech: 'backend', year: 2025, meta: 'CORE SKILL', summary: 'Embedded storage for battery telemetry and results.' },
-  { id: 'nextjs', label: 'Next.js', kind: 'skill', domain: 'fullstack', tech: 'frontend', year: 2026, meta: 'CORE SKILL', summary: 'App-router frontend for Gemini-powered tooling.' },
-  { id: 'typescript', label: 'TypeScript', kind: 'skill', domain: 'fullstack', tech: 'frontend', year: 2026, meta: 'CORE SKILL', summary: 'Type-safe contracts across the QuizForge stack.' },
-  { id: 'tailwind', label: 'Tailwind CSS', kind: 'skill', domain: 'fullstack', tech: 'frontend', year: 2026, meta: 'CORE SKILL', summary: 'Design-system-driven UI implementation.' },
   { id: 'deploy', label: 'Vercel / Render', kind: 'skill', domain: 'fullstack', tech: 'backend', year: 2025, meta: 'CORE SKILL', summary: 'Frontend and API deployment pipeline.' },
+  { id: 'emotion-detection', label: 'Emotion Detection', kind: 'skill', domain: 'predictive', tech: 'ml', year: 2026, meta: 'CORE SKILL', summary: '7-class facial emotion detection from still images and video.' },
+  { id: 'content-filtering', label: 'Content Filtering', kind: 'skill', domain: 'predictive', tech: 'ml', year: 2026, meta: 'CORE SKILL', summary: 'Feature-based recommender over labelled Spotify tracks.' },
+  { id: 'cosine-similarity', label: 'Cosine Similarity', kind: 'skill', domain: 'predictive', tech: 'ml', year: 2026, meta: 'CORE SKILL', summary: 'Vector similarity ranking for playlist recommendations.' },
+  { id: 'spotify-api', label: 'Spotify API', kind: 'skill', domain: 'fullstack', tech: 'backend', year: 2026, meta: 'CORE SKILL', summary: 'Playlist creation and track lookup integration.' },
 
   // Education & certifications ---------------------------------------------
   {
@@ -142,11 +137,10 @@ export const NODE_BY_ID = Object.fromEntries(NODES.map((node) => [node.id, node]
 /* -------------------------------------------------------------------------- */
 
 const PROJECT_STACK = {
-  batterysense: ['python', 'fastapi', 'xgboost', 'random-forest', 'isolation-forest', 'sqlite', 'sqlalchemy'],
   sentimentiq: ['python', 'fastapi', 'scikit-learn', 'nlp', 'pandas', 'numpy', 'react'],
   memoza: ['python', 'fastapi', 'react', 'postgresql', 'scikit-learn', 'sqlalchemy', 'deploy'],
   'smart-crop': ['python', 'flask', 'scikit-learn', 'random-forest', 'pandas', 'numpy'],
-  quizforge: ['gemini', 'fastapi', 'react', 'nextjs', 'typescript', 'tailwind'],
+  'song-reccomendation': ['python', 'emotion-detection', 'content-filtering', 'cosine-similarity', 'spotify-api'],
 }
 
 const edgeKey = (a, b) => [a, b].sort().join('::')
@@ -277,36 +271,8 @@ export const MODE_LABELS = {
 /* -------------------------------------------------------------------------- */
 
 export const CASE_STUDIES = {
-  batterysense: {
-    index: '01',
-    title: 'BatterySense AI',
-    domain: 'Predictive ML',
-    tone: 'cyan',
-    year: '2025',
-    problem:
-      'EV operators need a trustworthy read on battery degradation before it becomes an unplanned failure. Raw charge-cycle telemetry alone does not tell you whether a pack is healthy, how long it will last, or which cells are behaving abnormally.',
-    solution:
-      'A supervised health-estimation pipeline and an unsupervised anomaly layer, exposed together as a typed FastAPI inference service and backed by a lightweight SQL store.',
-    pipeline: ['Charge-cycle data', 'Feature engineering', 'RF / GB / XGBoost', 'Isolation Forest', 'FastAPI', 'Dashboard'],
-    highlights: [
-      'State-of-health (SOH) estimation from voltage, current, temperature and cycle features.',
-      'Remaining-useful-life (RUL) prediction for Maintenance planning.',
-      'Isolation Forest flags anomalous degradation patterns before failure.',
-      'Random Forest, Gradient Boosting and XGBoost compared as candidate regressors.',
-      'SQLAlchemy + SQLite persistence for telemetry and inference history.',
-    ],
-    metrics: [
-      { value: '3', label: 'health signals' },
-      { value: '3', label: 'tree-based regressors' },
-      { value: 'FastAPI', label: 'inference layer' },
-    ],
-    stack: ['Python', 'FastAPI', 'Random Forest', 'Gradient Boosting', 'XGBoost', 'Isolation Forest', 'SQLite', 'SQLAlchemy'],
-    repo: `${GITHUB_PROFILE}?tab=repositories&q=batterysense`,
-    repoUnverified: true,
-    demo: null,
-  },
   sentimentiq: {
-    index: '02',
+    index: '01',
     title: 'SentimentIQ',
     domain: 'NLP & LLMs',
     tone: 'violet',
@@ -334,7 +300,7 @@ export const CASE_STUDIES = {
     demoLabel: 'Project README',
   },
   memoza: {
-    index: '03',
+    index: '02',
     title: 'Memoza',
     domain: 'Full-Stack AI',
     tone: 'emerald',
@@ -361,7 +327,7 @@ export const CASE_STUDIES = {
     demo: 'https://sashakolhatkar.github.io/memoza/',
   },
   'smart-crop': {
-    index: '04',
+    index: '03',
     title: 'Smart Crop Recommendation',
     domain: 'Predictive ML',
     tone: 'cyan',
@@ -386,31 +352,31 @@ export const CASE_STUDIES = {
     repo: `${GITHUB_PROFILE}/smart-crop-recommendation`,
     demo: 'https://sashakolhatkar.github.io/smart-crop-recommendation/',
   },
-  quizforge: {
-    index: '05',
-    title: 'QuizForge',
-    domain: 'NLP & LLMs',
-    tone: 'violet',
+  'song-reccomendation': {
+    index: '04',
+    title: 'Song Recommendation by Mood',
+    domain: 'Predictive ML',
+    tone: 'cyan',
     year: '2026',
     problem:
-      'Writing good multiple-choice assessments is slow and repetitive. Educators need varied, curriculum-aligned questions without authoring every distractor by hand.',
+      'Picking music that fits how someone actually feels is a manual, guess-heavy task. A playlist should be able to start from a person’s expression, not from a genre they happened to click.',
     solution:
-      'An autonomous MCQ generator driven by Google Gemini, with a typed FastAPI layer and a modern Next.js interface for review and export.',
-    pipeline: ['Topic + parameters', 'Prompt orchestration', 'Google Gemini', 'MCQ validation', 'FastAPI', 'Next.js UI'],
+      'An end-to-end notebook pipeline: detect the emotion in a face image or video, map it to a music mood, then rank Spotify tracks with content-based filtering and build the playlist through the Spotify API.',
+    pipeline: ['Image / video', 'Face detection', '7-class emotion model', '4-class music mood model', 'Playlist vector', 'Cosine similarity', 'Top 40 tracks', 'Spotify API'],
     highlights: [
-      'Autonomous MCQ generation from topic prompts using Google Gemini models.',
-      'Typed Python service layer built with FastAPI.',
-      'Next.js + TypeScript front end with Tailwind CSS design system.',
-      'Structured flow from generation to review in a single interface.',
+      'Facial emotion detection from both still images and video across 7 classes: Happy, Sad, Angry, Disgust, Surprise, Neutral and Fear.',
+      'Music mood classifier trained with data_moods.csv labels each track Happy, Sad, Energetic or Calm.',
+      'Content-based filtering over the Kaggle Spotify dataset (~600k tracks) with dataset pre-processing and feature engineering.',
+      'Playlist vectors compared with cosine similarity to produce the top 40 recommended songs.',
+      'Spotify API integration turns the recommendation into an actual playlist.',
     ],
     metrics: [
-      { value: 'Gemini', label: 'generation engine' },
-      { value: 'MCQ', label: 'output format' },
-      { value: 'Next.js', label: 'delivery layer' },
+      { value: '7', label: 'face emotions' },
+      { value: '4', label: 'music moods' },
+      { value: '40', label: 'tracks recommended' },
     ],
-    stack: ['Google Gemini', 'FastAPI', 'Next.js', 'TypeScript', 'Tailwind CSS'],
-    repo: `${GITHUB_PROFILE}?tab=repositories&q=quizforge`,
-    repoUnverified: true,
+    stack: ['Python', 'Jupyter Notebook', 'Emotion Detection', 'Music Mood Classification', 'Content-Based Filtering', 'Cosine Similarity', 'Spotify API'],
+    repo: `${GITHUB_PROFILE}/song-reccomendation`,
     demo: null,
   },
 }
@@ -437,9 +403,9 @@ export const CV_SUMMARY = {
     'C1 Advanced English',
   ],
   skillGroups: [
-    { label: 'Machine Learning', items: ['Python', 'Scikit-learn', 'Random Forest', 'Gradient Boosting', 'XGBoost', 'Isolation Forest', 'Pandas', 'NumPy'] },
-    { label: 'NLP & LLMs', items: ['NLP', 'Topic modelling', 'Sentiment / emotion classification', 'Google Gemini', 'Prompt orchestration'] },
-    { label: 'Backend & Data', items: ['FastAPI', 'Flask', 'SQLAlchemy', 'PostgreSQL', 'SQLite', 'REST APIs'] },
-    { label: 'Frontend & Deployment', items: ['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel', 'Render'] },
+    { label: 'Machine Learning', items: ['Python', 'Scikit-learn', 'Random Forest', 'Gradient Boosting', 'Pandas', 'NumPy', 'Content-based filtering', 'Cosine similarity'] },
+    { label: 'NLP & Vision', items: ['NLP', 'Topic modelling', 'Sentiment / emotion classification', 'Facial emotion detection'] },
+    { label: 'Backend & Data', items: ['FastAPI', 'Flask', 'SQLAlchemy', 'PostgreSQL', 'Spotify API', 'REST APIs'] },
+    { label: 'Frontend & Deployment', items: ['React.js', 'Vercel', 'Render', 'Jupyter Notebook'] },
   ],
 }

@@ -5,20 +5,21 @@ import {
   CLUSTERS,
   DOMAIN_META,
   NODES,
-  TONES,
 } from '../data/latentData'
+import { useTheme } from '../context/ThemeContext'
 import { ArrowLeftIcon, CheckIcon, MapIcon } from './icons'
 
 const FILTERS = [{ id: 'all', label: 'All' }, ...CLUSTERS.domain.map((cluster) => ({ id: cluster.id, label: cluster.label }))]
 
 export default function MobileCards({ onExploreMap, onOpenProject }) {
+  const { tones: TONES } = useTheme()
   const [filter, setFilter] = useState('all')
   const cards = NODES.filter(
     (node) => node.kind === 'project' || node.kind === 'education',
   ).filter((node) => filter === 'all' || node.domain === filter)
 
   return (
-    <div className="thin-scroll absolute inset-0 z-10 overflow-y-auto bg-obsidian">
+    <div className="thin-scroll absolute inset-0 z-10 overflow-y-auto bg-obsidian/65">
       <div className="px-4 pb-32 pt-28">
         <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-cyan/80">LATENT SPACE · COMPACT VIEW</p>
         <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight text-warm">

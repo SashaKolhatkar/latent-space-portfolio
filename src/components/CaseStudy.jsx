@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import { CASE_STUDIES, TONES } from '../data/latentData'
+import { CASE_STUDIES } from '../data/latentData'
+import { useTheme } from '../context/ThemeContext'
 import { ArrowLeftIcon, CheckIcon, CloseIcon, ExternalIcon, GithubIcon } from './icons'
 
 const panel = {
@@ -19,6 +20,7 @@ const item = {
 }
 
 export default function CaseStudy({ projectId, onClose }) {
+  const { tones: TONES } = useTheme()
   const study = CASE_STUDIES[projectId]
   if (!study) return null
   const color = TONES[study.tone]
@@ -38,7 +40,7 @@ export default function CaseStudy({ projectId, onClose }) {
         type="button"
         aria-label="Close case study"
         onClick={onClose}
-        className="absolute inset-0 cursor-default bg-[#050609]/85 backdrop-blur-md"
+        className="absolute inset-0 cursor-default bg-obsidian/85 backdrop-blur-md"
       />
 
       <motion.section
@@ -50,7 +52,7 @@ export default function CaseStudy({ projectId, onClose }) {
         style={{ boxShadow: `0 40px 120px -40px ${color}33, 0 0 0 1px ${color}12` }}
       >
         {/* Header */}
-        <div className="sticky top-0 z-10 flex items-center justify-between gap-3 border-b border-white/[0.07] bg-[#0C0E15]/95 px-5 py-4 backdrop-blur-xl sm:px-8">
+        <div className="sticky top-0 z-10 flex items-center justify-between gap-3 border-b border-white/[0.07] bg-obsidian/95 px-5 py-4 backdrop-blur-xl sm:px-8">
           <button
             type="button"
             onClick={onClose}
@@ -162,11 +164,6 @@ export default function CaseStudy({ projectId, onClose }) {
                 </div>
               </motion.div>
 
-              {study.repoUnverified && (
-                <motion.p variants={item} className="font-mono text-[9px] leading-relaxed text-slate-600">
-                  Repository link points to a GitHub search — replace it with the exact URL in src/data/latentData.js.
-                </motion.p>
-              )}
             </div>
           </div>
 
@@ -175,17 +172,19 @@ export default function CaseStudy({ projectId, onClose }) {
             variants={item}
             className="mt-10 flex flex-wrap items-center gap-3 border-t border-white/[0.07] pt-7"
           >
-            <a
-              href={study.repo}
-              target="_blank"
-              rel="noreferrer"
-              className="pill-button border-transparent px-5 py-3 text-warm"
-              style={{ background: color, color: '#090A0F' }}
-            >
-              <GithubIcon />
-              GitHub Repository
-              <ExternalIcon className="h-3 w-3 opacity-70" />
-            </a>
+            {study.repo && (
+              <a
+                href={study.repo}
+                target="_blank"
+                rel="noreferrer"
+                className="pill-button border-transparent px-5 py-3 text-warm"
+                style={{ background: color, color: 'rgb(var(--bg-rgb))' }}
+              >
+                <GithubIcon />
+                GitHub Repository
+                <ExternalIcon className="h-3 w-3 opacity-70" />
+              </a>
+            )}
             {study.demo && (
               <a
                 href={study.demo}

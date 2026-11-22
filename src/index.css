@@ -6,6 +6,23 @@
 
 :root {
   color-scheme: dark;
+  --bg-rgb: 9 10 15;
+  --grid-rgb: 26 29 39;
+  --cyan-rgb: 0 240 255;
+  --violet-rgb: 139 92 246;
+  --emerald-rgb: 16 185 129;
+  --warm-rgb: 248 250 252;
+  --bg: rgb(var(--bg-rgb));
+}
+
+/* Deep Space is a separate visual mode, not a replacement for the default. */
+[data-theme='space'] {
+  --bg-rgb: 3 5 16;
+  --grid-rgb: 28 31 64;
+  --cyan-rgb: 34 211 238;
+  --violet-rgb: 192 132 252;
+  --emerald-rgb: 244 114 182;
+  --warm-rgb: 245 248 255;
 }
 
 html,
@@ -18,11 +35,12 @@ body {
   margin: 0;
   min-width: 320px;
   overflow: hidden;
-  background: #090a0f;
-  color: #f8fafc;
+  background: rgb(var(--bg-rgb));
+  color: rgb(var(--warm-rgb));
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  transition: background-color 450ms ease, color 450ms ease;
 }
 
 button,
@@ -75,9 +93,79 @@ a {
 .canvas-surface {
   touch-action: none;
   cursor: grab;
+  background: transparent;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Deep-space atmosphere                                                     */
+/* -------------------------------------------------------------------------- */
+
+.space-base {
   background:
-    radial-gradient(ellipse 70% 60% at 50% 45%, rgba(20, 26, 42, 0.55), transparent 75%),
-    #090a0f;
+    radial-gradient(ellipse 65% 55% at 18% 12%, rgba(49, 27, 105, 0.42), transparent 72%),
+    radial-gradient(ellipse 60% 55% at 84% 74%, rgba(8, 58, 92, 0.38), transparent 72%),
+    linear-gradient(155deg, #05060f 0%, #080a1b 48%, #04050e 100%);
+}
+
+.nebula {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.4;
+  mix-blend-mode: screen;
+}
+
+.nebula-violet {
+  width: 58vw;
+  height: 58vw;
+  left: -16vw;
+  top: -22vw;
+  background: radial-gradient(circle, rgb(var(--violet-rgb) / 0.42), transparent 66%);
+}
+
+.nebula-cyan {
+  width: 52vw;
+  height: 52vw;
+  right: -14vw;
+  top: 12vh;
+  background: radial-gradient(circle, rgb(var(--cyan-rgb) / 0.22), transparent 66%);
+}
+
+.nebula-emerald {
+  width: 46vw;
+  height: 46vw;
+  left: 26vw;
+  bottom: -26vw;
+  background: radial-gradient(circle, rgb(var(--emerald-rgb) / 0.18), transparent 66%);
+}
+
+.nebula-drift {
+  animation: nebula-drift 38s ease-in-out infinite alternate;
+}
+
+@keyframes nebula-drift {
+  from {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(2%, 2%, 0) scale(1.08);
+  }
+}
+
+.star-twinkle {
+  animation-name: star-twinkle;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes star-twinkle {
+  0%,
+  100% {
+    opacity: 0.16;
+  }
+  50% {
+    opacity: 0.85;
+  }
 }
 
 .canvas-surface[data-dragging='true'] {
@@ -136,13 +224,13 @@ a {
 }
 
 .node-label {
-  text-shadow: 0 1px 8px #090a0f, 0 1px 3px #090a0f;
+  text-shadow: 0 1px 8px rgb(var(--bg-rgb)), 0 1px 3px rgb(var(--bg-rgb));
   white-space: nowrap;
 }
 
 .vignette {
   background:
-    radial-gradient(ellipse 85% 75% at 50% 50%, transparent 45%, rgba(9, 10, 15, 0.72) 100%);
+    radial-gradient(ellipse 85% 75% at 50% 50%, transparent 45%, rgb(var(--bg-rgb) / 0.72) 100%);
 }
 
 .scan-overlay {
@@ -150,7 +238,7 @@ a {
     to bottom,
     transparent 0,
     transparent 3px,
-    rgba(0, 240, 255, 0.018) 4px
+    rgb(var(--cyan-rgb) / 0.018) 4px
   );
 }
 

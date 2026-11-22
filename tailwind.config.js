@@ -4,12 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        obsidian: '#090A0F',
-        grid: '#1A1D27',
-        cyan: '#00F0FF',
-        violet: '#8B5CF6',
-        emerald: '#10B981',
-        warm: '#F8FAFC',
+        obsidian: 'rgb(var(--bg-rgb) / <alpha-value>)',
+        grid: 'rgb(var(--grid-rgb) / <alpha-value>)',
+        cyan: 'rgb(var(--cyan-rgb) / <alpha-value>)',
+        violet: 'rgb(var(--violet-rgb) / <alpha-value>)',
+        emerald: 'rgb(var(--emerald-rgb) / <alpha-value>)',
+        warm: 'rgb(var(--warm-rgb) / <alpha-value>)',
       },
       fontFamily: {
         display: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],

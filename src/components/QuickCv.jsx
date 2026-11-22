@@ -14,7 +14,7 @@ function Section({ title, children }) {
 
 export default function QuickCv({ onExit }) {
   return (
-    <div className="cv-sheet thin-scroll absolute inset-0 z-10 overflow-y-auto bg-obsidian">
+    <div className="cv-sheet thin-scroll absolute inset-0 z-10 overflow-y-auto bg-obsidian/88">
       <div className="mx-auto max-w-4xl px-5 pb-24 pt-28 sm:px-8 sm:pt-32">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
@@ -74,14 +74,16 @@ export default function QuickCv({ onExit }) {
                 <div>
                   <p className="text-[12px] leading-6 text-slate-400">{study.solution}</p>
                   <p className="mt-1 font-mono text-[10px] text-slate-500">{study.stack.join(' · ')}</p>
-                  <a
-                    href={study.repo}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-1 inline-flex items-center gap-1 font-mono text-[10px] text-cyan/80 hover:text-cyan"
-                  >
-                    <GithubIcon className="h-3 w-3" /> Source <ExternalIcon className="h-2.5 w-2.5" />
-                  </a>
+                  {study.repo && (
+                    <a
+                      href={study.repo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-1 inline-flex items-center gap-1 font-mono text-[10px] text-cyan/80 hover:text-cyan"
+                    >
+                      <GithubIcon className="h-3 w-3" /> Source <ExternalIcon className="h-2.5 w-2.5" />
+                    </a>
+                  )}
                 </div>
               </div>
             ))}

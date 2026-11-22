@@ -1,18 +1,21 @@
-import { BoltIcon, FileIcon, GithubIcon } from './icons'
+import { BoltIcon, FileIcon, GithubIcon, OrbitalIcon } from './icons'
+import { useTheme } from '../context/ThemeContext'
 import { EMAIL, GITHUB_PROFILE, RESUME_URL } from '../data/latentData'
 
 function BrandMark() {
+  const { tones } = useTheme()
   return (
     <svg viewBox="0 0 36 36" className="h-9 w-9 shrink-0" aria-hidden="true">
-      <circle cx="18" cy="18" r="13" fill="none" stroke="#00F0FF" strokeOpacity="0.35" strokeWidth="1" strokeDasharray="3 4" />
-      <circle cx="18" cy="18" r="4.5" fill="#00F0FF" />
-      <circle cx="29" cy="9" r="2.4" fill="#8B5CF6" />
-      <circle cx="7" cy="27" r="2.4" fill="#10B981" />
+      <circle cx="18" cy="18" r="13" fill="none" stroke={tones.cyan} strokeOpacity="0.35" strokeWidth="1" strokeDasharray="3 4" />
+      <circle cx="18" cy="18" r="4.5" fill={tones.cyan} />
+      <circle cx="29" cy="9" r="2.4" fill={tones.violet} />
+      <circle cx="7" cy="27" r="2.4" fill={tones.emerald} />
     </svg>
   )
 }
 
 export default function Hud({ cvMode, onToggleCv, coordRef }) {
+  const { spaceMode, toggleSpace, tones } = useTheme()
   return (
     <header className="no-print pointer-events-none fixed inset-x-0 top-0 z-40 flex items-start justify-between gap-4 p-4 sm:p-6">
       <div className="pointer-events-auto flex items-center gap-3">
@@ -22,7 +25,7 @@ export default function Hud({ cvMode, onToggleCv, coordRef }) {
             SASHA KOLHATKAR
           </h1>
           <p className="mono-label mt-0.5 text-[9px] text-cyan/70">
-            {cvMode ? 'QUICK CV // RECRUITER VIEW' : '// LATENT SPACE v1.0'}
+            {cvMode ? 'QUICK CV // RECRUITER VIEW' : spaceMode ? '// DEEP SPACE v2.0' : '// LATENT SPACE v1.0'}
           </p>
           {!cvMode && (
             <div className="mt-2 flex items-center gap-3">
@@ -32,7 +35,10 @@ export default function Hud({ cvMode, onToggleCv, coordRef }) {
               >
                 X: 0.00 | Y: 0.00
               </span>
-              <span className="hidden h-1 w-1 rounded-full bg-emerald shadow-[0_0_8px_#10B981] sm:block" />
+              <span
+                className="hidden h-1 w-1 rounded-full sm:block"
+                style={{ background: tones.emerald, boxShadow: `0 0 8px ${tones.emerald}` }}
+              />
               <span className="hidden font-mono text-[9px] uppercase tracking-[0.16em] text-slate-500 sm:block">
                 AI / ML · DATA SCIENCE
               </span>
@@ -73,6 +79,22 @@ export default function Hud({ cvMode, onToggleCv, coordRef }) {
             <path d="m3 7 9 6 9-6" />
           </svg>
         </a>
+
+        <button
+          type="button"
+          onClick={toggleSpace}
+          aria-pressed={spaceMode}
+          title={spaceMode ? 'Switch to Latent Space palette' : 'Switch to Deep Space palette'}
+          className={`pill-button ml-1 border px-3 py-2.5 sm:px-4 ${
+            spaceMode
+              ? 'border-violet/60 bg-violet/10 text-violet'
+              : 'border-white/10 bg-white/[0.035] text-slate-300 hover:border-violet/50 hover:text-violet'
+          }`}
+        >
+          <OrbitalIcon className="h-3.5 w-3.5" />
+          <span className="hidden sm:inline">{spaceMode ? 'Deep Space' : 'Space Mode'}</span>
+          <span className="sm:hidden">SPACE</span>
+        </button>
 
         <button
           type="button"
