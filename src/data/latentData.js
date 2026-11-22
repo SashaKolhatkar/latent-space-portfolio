@@ -80,7 +80,7 @@ export const NODES = [
   },
 
   // Core skills ------------------------------------------------------------
-  { id: 'python', label: 'Python', kind: 'skill', domain: 'predictive', tech: 'ml', year: 2021, meta: 'CORE SKILL', summary: 'Primary language for modelling, data pipelines and services.' },
+  { id: 'python', label: 'Python', kind: 'skill', domain: 'predictive', tech: 'ml', year: 2023, meta: 'CORE SKILL', summary: 'Primary language for modelling, data pipelines and services.' },
   { id: 'scikit-learn', label: 'Scikit-learn', kind: 'skill', domain: 'predictive', tech: 'ml', year: 2023, meta: 'CORE SKILL', summary: 'Classical ML modelling, pipelines and evaluation.' },
   { id: 'random-forest', label: 'Random Forest', kind: 'skill', domain: 'predictive', tech: 'ml', year: 2024, meta: 'CORE SKILL', summary: 'Ensemble classifier used in crop and battery models.' },
   { id: 'pandas', label: 'Pandas', kind: 'skill', domain: 'predictive', tech: 'ml', year: 2023, meta: 'CORE SKILL', summary: 'Feature engineering and tabular data wrangling.' },
@@ -104,8 +104,8 @@ export const NODES = [
     kind: 'education',
     domain: 'academic',
     tech: 'ml',
-    year: 2021,
-    meta: 'EDUCATION · 2021—25',
+    year: 2023,
+    meta: 'EDUCATION · 2023—27',
     summary: 'SSIPMT, Raipur · 7th semester · 7.20 CGPA.',
   },
   {
@@ -200,8 +200,7 @@ export const CLUSTERS = {
     { id: 'frontend', label: 'REACT & FRONTEND', tone: 'violet', center: { x: 360, y: 180 } },
   ],
   timeline: [
-    { id: 2021, label: '2021 · FOUNDATION', tone: 'slate', center: { x: -565, y: 30 } },
-    { id: 2023, label: '2023 · CERTIFICATIONS', tone: 'violet', center: { x: -300, y: -125 } },
+    { id: 2023, label: '2023—27 · FOUNDATION', tone: 'slate', center: { x: -565, y: 30 } },
     { id: 2024, label: '2024 · FIRST MODELS', tone: 'cyan', center: { x: -25, y: 95 } },
     { id: 2025, label: '2025 · SHIPPING', tone: 'emerald', center: { x: 275, y: -95 } },
     { id: 2026, label: '2026 · LLM SYSTEMS', tone: 'violet', center: { x: 565, y: 110 } },
@@ -395,7 +394,7 @@ export const CV_SUMMARY = {
     {
       title: 'B.Tech in Artificial Intelligence & Machine Learning',
       org: 'Shri Shankaracharya Institute of Professional Management and Technology (SSIPMT), Raipur',
-      detail: '7th semester · 7.20 CGPA · 2021—2025',
+      detail: '7th semester · 7.20 CGPA · 2023—2027',
     },
   ],
   certifications: [
