@@ -304,6 +304,7 @@ export function useLatentEngine({ mode, focusedId, paused, coordRef }) {
 
     const onPointerDown = (event) => {
       if (event.button !== 0 && event.pointerType === 'mouse') return
+      if (event.target instanceof Element && event.target.closest('[data-zoom-controls]')) return
       const point = localPoint(event)
       activePointers.current.set(event.pointerId, point)
       pointer.current.sx = point.x
